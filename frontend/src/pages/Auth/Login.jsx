@@ -10,6 +10,7 @@ import { LoaderCircle } from "lucide-react";
 import { validateEmail } from "@/utils/helper";
 import axios from "axios";
 import { UserContext } from "@/context/UserContext";
+import api from "@/utils/axiosInstance";
 
 const Login = () => {
   const { updateUser } = useContext(UserContext);
@@ -44,8 +45,8 @@ const Login = () => {
     setError(null);
 
     try {
-      const { data } = await axios.post(
-        "http://localhost:8080/api/user/login",
+      const { data } = await api.post(
+        "/user/login",
         { email, password },
         { withCredentials: true }
       );

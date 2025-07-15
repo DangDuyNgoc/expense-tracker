@@ -1,3 +1,4 @@
+import { Toaster } from "react-hot-toast";
 import { Navigate, Outlet } from "react-router-dom";
 
 function App() {
@@ -10,6 +11,7 @@ function App() {
   return (
     <>
       <Outlet />
+      <Toaster />
     </>
   );
 }

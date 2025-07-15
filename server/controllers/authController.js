@@ -175,7 +175,6 @@ export const getAllUserController = async (req, res) => {
 export const refreshTokenController = async (req, res) => {
     try {
         const refresh_token = req.cookies.refreshToken;
-        console.log("refresh_token: ", refresh_token);
 
         if (!refresh_token) {
             return res.status(401).send({

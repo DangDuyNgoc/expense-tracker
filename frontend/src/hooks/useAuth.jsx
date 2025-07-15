@@ -1,5 +1,5 @@
 import { UserContext } from "@/context/UserContext";
-import axios from "axios";
+import api from "@/utils/axiosInstance";
 import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -15,7 +15,7 @@ export const useAuth = () => {
 
     const fetchUserInfo = async () => {
       try {
-        const response = await axios.get("http://localhost:8080/api/user/me", {
+        const response = await api.get("/user/me", {
           withCredentials: true,
         });
 

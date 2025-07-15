@@ -4,19 +4,14 @@ export const isAuthenticated = async (req, res, next) => {
     try {
         const accessToken = req.headers.authorization?.replace("Bearer ", "");
         if (!accessToken) {
-            return res.status(403).send({
+            return res.status(401).send({
                 success: false,
                 message: "Please login to access this resource"
             })
         }
 
         const decoded = jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET);
-        if (!decoded) {
-            return res.status(403).send({
-                success: false,
-                message: "Invalid access token"
-            })
-        }
+
         const user = await userModel.findById(decoded.userId);
         if (!user) {
             return res.status(404).send({
@@ -26,12 +21,26 @@ export const isAuthenticated = async (req, res, next) => {
         }
 
         req.user = user;
-        next();
+        return next();
     } catch (error) {
         console.error("Authentication error:", error);
-        res.status(500).send({
+        if (error.name === "TokenExpiredError") {
+            return res.status(403).send({
+                success: false,
+                message: "Access token expired",
+            });
+        }
+
+        if (error.name === "JsonWebTokenError") {
+            return res.status(403).json({
+                success: false,
+                message: "Invalid access token",
+            });
+        }
+
+        return res.status(500).json({
             success: false,
-            message: "Internal Server Error"
+            message: "Internal Server Error",
         });
     }
 }

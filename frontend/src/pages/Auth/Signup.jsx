@@ -7,8 +7,8 @@ import { Button } from "@/components/ui/button";
 import { LoaderCircle } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { validateEmail } from "@/utils/helper";
-import axios from "axios";
 import { UserContext } from "@/context/UserContext";
+import api from "@/utils/axiosInstance";
 
 const Signup = () => {
   const { updateUser } = useContext(UserContext);
@@ -62,8 +62,8 @@ const Signup = () => {
     setError("");
 
     try {
-      const { data } = await axios.post(
-        "http://localhost:8080/api/user/registration",
+      const { data } = await api.post(
+        "/user/registration",
         { fullName, email, password },
         { withCredentials: true }
       );
