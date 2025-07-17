@@ -25,7 +25,7 @@ const ExpenseOverView = ({ transactions, onExpenseIncome }) => {
         </div>
 
         <button className="add-btn" onClick={onExpenseIncome}>
-          <Plus /> <span className="text-white">Add Expense</span>
+          <Plus /> Add Expense
         </button>
       </div>
       <div className="mt-10">

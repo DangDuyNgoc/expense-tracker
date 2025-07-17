@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import CustomPieChart from "../Charts/CustomPieChart";
 
-const Color = ["#875CF5", "#FA2C37", "FF6900"];
+const Color = ["#875CF5", "#FA2C37", "#FF6900"];
 const FinanceOverview = ({ totalBalance, totalIncome, totalExpense }) => {
   const balanceData = [
     { name: "Total Balance", amount: totalBalance },

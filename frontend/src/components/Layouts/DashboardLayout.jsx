@@ -1,5 +1,6 @@
+/* eslint-disable react/prop-types */
 import { UserContext } from "@/context/UserContext";
-import React, { useContext } from "react";
+import { useContext } from "react";
 import Navbar from "./Navbar";
 import SlideMenu from "./SlideMenu";
 

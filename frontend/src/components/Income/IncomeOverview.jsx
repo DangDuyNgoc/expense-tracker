@@ -22,11 +22,11 @@ const IncomeOverview = ({ transactions, onAddIncome }) => {
         </div>
 
         <button className="add-btn" onClick={onAddIncome}>
-          <Plus /> <span className="text-white">Add Income</span>
+          <Plus /> <span className="">Add Income</span>
         </button>
       </div>
       <div className="mt-10">
-        <CustomBarChart data={chartData} />
+        <CustomBarChart data={chartData} xKey="month"/>
       </div>
     </div>
   );

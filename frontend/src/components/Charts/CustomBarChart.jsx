@@ -2,7 +2,7 @@
 import {
   Bar,
   BarChart,
-  CartesianAxis,
+  CartesianGrid,
   Cell,
   ResponsiveContainer,
   Tooltip,
@@ -10,9 +10,9 @@ import {
   YAxis,
 } from "recharts";
 
-const CustomBarChart = ({ data }) => {
+const CustomBarChart = ({ data, xKey = "category" }) => {
   const getBarColor = (index) => {
-    return index % 2 === 0 ? "#875cf5" : "cfbefb";
+    return index % 2 === 0 ? "#875cf5" : "#cfbefb";
   };
 
   const CustomTooltip = ({ active, payload }) => {
@@ -35,12 +35,12 @@ const CustomBarChart = ({ data }) => {
   };
 
   return (
-    <div className="bg-white mt-6">
-      <ResponsiveContainer width="100%" height={380}>
-        <BarChart>
-          <CartesianAxis stroke="none" />
+    <div className="bg-white mt-6 h-[300px]">
+      <ResponsiveContainer width="100%" height={300}>
+        <BarChart data={data}>
+          <CartesianGrid stroke="none" />
           <XAxis
-            dataKey="month"
+            dataKey={xKey}
             tick={{ fontSize: 12, fill: "#555" }}
             stroke="none"
           />
@@ -48,13 +48,7 @@ const CustomBarChart = ({ data }) => {
 
           <Tooltip content={CustomTooltip} />
 
-          <Bar
-            dataKey="amount"
-            fill="#FF80"
-            radius={[10, 20, 0, 0]}
-            activeDot={{ r: 8, fill: "yellow" }}
-            activeStyle={{ fill: "green" }}
-          >
+          <Bar dataKey="amount" radius={[10, 10, 0, 0]}>
             {data?.map((item, index) => (
               <Cell key={index} fill={getBarColor(index)} />
             ))}

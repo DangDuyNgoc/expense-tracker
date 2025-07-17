@@ -1,13 +1,12 @@
 import { UserContext } from "@/context/UserContext";
 import { SLIDE_ICON } from "@/utils/icon";
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import CharAvatar from "../Cards/CharAvatar";
 
+// eslint-disable-next-line react/prop-types
 const SlideMenu = ({ activeMenu }) => {
   const { user, clearUser } = useContext(UserContext);
-
-  console.log(user);
 
   const navigate = useNavigate();
 

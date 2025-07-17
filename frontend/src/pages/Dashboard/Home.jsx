@@ -1,4 +1,9 @@
 /* eslint-disable no-unused-vars */
+import React, { useEffect, useState } from "react";
+import { CreditCard, HandCoins, WalletMinimal } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+
+import api from "@/utils/axiosInstance";
 import InfoCard from "@/components/Cards/InfoCard";
 import DashboardLayout from "@/components/Layouts/DashboardLayout";
 import ExpenseTransactions from "@/components/Transactions/ExpenseTransactions";
@@ -8,11 +13,7 @@ import RecentIncome from "@/components/Transactions/RecentIncome";
 import RecentIncomeWithChart from "@/components/Transactions/RecentIncomeWithChart";
 import RecentTransactions from "@/components/Transactions/RecentTransactions";
 import { useAuth } from "@/hooks/useAuth";
-import api from "@/utils/axiosInstance";
 import { addThousandsSeparator } from "@/utils/helper";
-import { CreditCard } from "lucide-react";
-import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   const [dashboard, setDashboard] = useState(null);
@@ -56,14 +57,14 @@ const Home = () => {
           />
 
           <InfoCard
-            icon={<CreditCard />}
+            icon={<WalletMinimal />}
             value={addThousandsSeparator(dashboard?.totalIncome)}
             color="bg-orange-500"
             label={"Total Income"}
           />
 
           <InfoCard
-            icon={<CreditCard />}
+            icon={<HandCoins />}
             value={addThousandsSeparator(dashboard?.totalExpense)}
             color="bg-red-500"
             label={"Total Expense"}
